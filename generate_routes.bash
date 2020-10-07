@@ -1,25 +1,36 @@
 #!/usr/bin/env bash
 #!/bin/bash
 #
-DEBUG_VERB_READING_LOGIC=$DEBUG || 0
-LIGHTPINK="\033[1;204m"
-YELLOW_OVER_DARKBLUE="\033[38;5;220m\033[48;5;20m"
-RESET="\033[0m"
-        function kill() {
-            echo -e " ☠ ${LIGHTPINK} KILL EXECUTION SIGNAL SEND ${RESET}"
-            echo -e " ☠ ${YELLOW_OVER_DARKBLUE}  ${*} ${RESET}"
-            exit 69;
-        }
+typeset -gr THISSCRIPTNAME="$(pwd)/$(basename "$0")"
+typeset -gr THISPWD="$(pwd)"
+. ./generate_error.bash
 
+typeset -g _one=""
 function generate_routes(){
+    local  _camel _pwd _from _to _run  _msg _template _target _worker 
+    local -i _err
     local _routes 
-
-local appmodule="import { Module } from '@nestjs/common';
+    local _targets
+    local _import_lines 
+    local _import_modules 
+    local appmodule
+    _pwd=$(pwd)
+    _worker="${_pwd}/generate_worker.bash"
+    _template="${_pwd}/src/templetus"
+    _targets="${_pwd}/targets"
+    file_exists_with_spaces "${_template}"
+    file_exists_with_spaces "${_worker}"
+    file_exists_with_spaces "${_targets}"
+    _import_lines=""
+    _import_modules=""
+    appmodule="import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+${_import_lines}
 
 @Module({
   imports: [
+      ${_import_modules}
   ],
   controllers: [AppController],
   providers: [AppService],
@@ -27,44 +38,40 @@ import { AppService } from './app.service';
 export class AppModule {}
 
 "
+function addimportsmodule(){
+    echo "${appmodule}"
+
+}
 # echo "${appmodule}"
 # exit 0
-    _routes="
-GetWeight
-InitiateWeiging
-CheckDriver
-CheckVehicles
-CheckDriverLoadingAdr
-CheckVehicleLoadingAdr
-CheckTransportAvailability
-CheckAdditionalInformation
-CheckCompartmentPositions
-CheckPreloadings
-ConvertToUom
-GetTerminalShifts
-GetVehicleInfo
-GetAuthIdProfile
-GetAuthPositions
-GetAdditionalInfoTermplates
-GetCheckinHeaders
-GetCheckin
-GetAdditionalTerminalServices
-GetPrintableDocuments
-CancelCheckin
-SetCheckin
-SetCheckinStatus
-SetAdditionalTerminalServices
-PrintDocuments
-RecalculateCompartmentPositions
-"
-    local _one _camel _pwd _from _to _run  _msg _template _target _worker 
-    local -i _err
-    _pwd=$(pwd)
-    _worker="${_pwd}/generate_worker.bash"
-    _template="${_pwd}/src/templetus"
+    _routes="$(ls -1 "${_targets}")"
+    [[ -z "${_routes}" ]] && echo "ERROR No rountes foud " && exit 1
     echo "#!/usr/bin/env bash" > "${_worker}" 
     echo "${appmodule}" > "${_pwd}/src/app.module.ts"
     chmod +x "${_worker}"
+    function toLower(){
+        echo "${@,,}" 
+    }
+    function toUpper(){
+        echo "${@^^}" 
+    }
+    function toCapitze(){
+        echo "${@~}"
+    }
+    
+    local lower_case_one="${_template,,}"   # bash Convert string to lowercase Bash 4 REF: https://stackoverflow.com/questions/2264428/converting-string-to-lower-case-in-bash-shell-scripting
+    local upper_case_one="${_template^^}"   # bash Convert string to uppercase Bash 4 REF: https://stackoverflow.com/questions/2264428/converting-string-to-lower-case-in-bash-shell-scripting
+    local capitalized_one="${_template~}"   # bash Convert string to Toggled Bash 4 REF: https://stackoverflow.com/questions/2264428/converting-string-to-lower-case-in-bash-shell-scripting
+    local title_one
+    function Titlelize(){
+        # echo "remote_available_packages" | sed -E 's/_(.)/\U\1/g' -> remoteAvailablePackages
+        sed -E 's/_(.)/\U\1/g'  # REF: https://unix.stackexchange.com/questions/416656/underscore-to-camelcase
+    }
+    function ToCamel(){
+        sed --expression 's/\([A-Z]\)/-\L\1/g' --expression 's/^-//' | sed 's/-a-d-r/-adr/'
+    }
+
+
     while read -r _one; do
     {
       echo "Testing ${_one}"
@@ -74,26 +81,43 @@ RecalculateCompartmentPositions
         # echo "check-checkpreloadings-loading-a-d-r" | sed --expression 's/\([A-Z]\)/-\L\1/g' --expression 's/^-//' | sed 's/-a-d-r/-adr/'
         # echo "CheckcheckPreloadingsLoadingADR" | sed --expression 's/\([A-Z]\)/-\L\1/g' --expression 's/^-//' | sed 's/-a-d-r/-adr/'
         echo "" >> "${_worker}"
-        echo "" >> "${_worker}"
         echo "echo '- - - - - ${_one} - - - - - ' " >> "${_worker}"
-        cd "${_pwd}"   
-        _camel=$(echo "${_one}" | sed --expression 's/\([A-Z]\)/-\L\1/g' --expression 's/^-//' | sed 's/-a-d-r/-adr/')
-        echo Check   src/${_camel}/  "${_one}"
+        cd "${_pwd}" || exit 1
+        _camel=$(echo "${_one}" | ToCamel )
+        echo "Check   src/${_camel}/  ${_one}"
         _target="${_pwd}/src/${_camel}"
-        mkdir -p "${_pwd}/targets/${_one}"
-        touch "${_pwd}/targets/${_one}/${_camel}.dto.ts"
-        touch "${_pwd}/targets/${_one}/${_camel}.interface.ts"
-        rm -rf "${_target}"
-        if ( [ -n "${_camel}" ] && [ ! -e "${_target}" ] )  || ( [ ! -e "${_target}/${_camel}.module.ts" ] ); then 
+        
+        if ( ( [ -n "${_camel}" ] && [ ! -e "${_target}" ] ) || ( [ ! -e "${_target}/${_camel}.module.ts" ] ) ); then 
         {
-            echo "                   Does not exists  "${_one}"     src/${_camel}/  "
-            echo "                                                  src/${_camel}/  GENERATE MODULE "${_one}" "
+            echo "                   Does not exists  ${_one}     src/${_camel}/  "
+            echo "                                                src/${_camel}/  GENERATE MODULE ${_one} "
             _err=0
             _msg=$(nest g mo "${_one}"  --no-spec)
             _err=$?
-            [ $_err -ne 0 ] && echo "                   Could not Generate Module! "${_one}" "
+            [ $_err -ne 0 ] && echo "                   Could not Generate Module! ${_one} "
         } 
         fi
+        rm -rf "${_target}"
+        cp -R "${_template}" "${_target}" 
+        cp -R  "${_template}/dto" "${_target}/" 
+        lower_case_one="${_one,,}"   # bash Convert string to lowercase Bash 4 REF: https://stackoverflow.com/questions/2264428/converting-string-to-lower-case-in-bash-shell-scripting
+        upper_case_one="${_one^^}"   # bash Convert string to uppercase Bash 4 REF: https://stackoverflow.com/questions/2264428/converting-string-to-lower-case-in-bash-shell-scripting
+        capitalized_one="${_one~}"
+        title_one=$(echo "${_one}" | Titlelize )
+        echo "_one: ${_one}"
+        echo "_target: ${_target}"
+        echo "_camel: ${_camel}"
+        echo "title_one: ${title_one}"
+        echo "capitalized_one: ${capitalized_one}"
+        echo "lower_case_one: ${lower_case_one}"
+        echo "upper_case_one: ${upper_case_one}"
+        directory_exists_with_spaces "${_target}"
+        # cd "${_target}" || exit 1
+        exit 0
+        äö Templetus "${title_one}"
+        _msg=$(cd "${_target}" && äö Templetus "${title_one}")
+        _msg=$(to_this Templetus "${title_one}")
+        
         if ( [ -n "${_camel}" ] && [ ! -e "${_target}" ] )  || ( [ ! -e "${_target}/${_camel}.controller.ts" ] ); then 
         {
              echo "                                                  src/${_camel}/  GENERATE CONTROLLER "${_one}" "
@@ -167,3 +191,7 @@ RecalculateCompartmentPositions
 
 generate_routes 
 
+echo "παρακαλώ 🙂
+τέλεια 🙂"
+
+exit 0

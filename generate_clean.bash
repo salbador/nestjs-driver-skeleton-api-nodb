@@ -81,11 +81,18 @@ function generate_clean(){
   echo Resetting .gitignore
   echo "${gitfile}" > "${_pwd}/.gitignore" 
   echo Resetting .nurignore_files
-  echo -e "generate_routes.bash\ngenerate_worker.bash\ngenerate_clean.bash\n" > "${_pwd}/.nurignore_files"   
+  local _ignore_files=".gitignore
+.temp_keys
+generate_targets.bash
+generate_routes.bash
+generate_worker.bash
+generate_clean.bash
+  "
+  echo -e "${_ignore_files}" > "${_pwd}/.nurignore_files"   
   echo Resetting .nurignore_dirs
   echo -e ".git\n" > "${_pwd}/.nurignore_dirs" 
   echo Resetting .ersetzeignore_files
-  echo -e "generate_routes.bash\ngenerate_worker.bash\ngenerate_clean.bash\n" > "${_pwd}/.ersetzeignore_files" 
+  echo -e "${_ignore_files}" > "${_pwd}/.ersetzeignore_files" 
   echo Resetting .ersetzeignore_dirs
   echo -e ".git\n" > "${_pwd}/.ersetzeignore_dirs" 
   _template="${_pwd}/src/templetus"
@@ -156,5 +163,4 @@ function generate_clean(){
 } # end generate_clean
 
 generate_clean
-
 
