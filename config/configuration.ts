@@ -16,7 +16,7 @@ export const configuration = () => ({
   swagger: {
     title: process.env.SWAGGER_TITLE || 'title',
     description: process.env.SWAGGER_DESCRIPTION || 'description',
-    version: process.env.SWAGGER_VERSION || '0.0.1',
+    version: process.env.SWAGGER_VERSION || '2.0.0',
     termsOfService: process.env.SWAGGER_TERMS_OF_SERVICE || 'terms_of_service',
     contact: {
       name: process.env.SWAGGER_CONTACT_NAME || 'contact_name',
