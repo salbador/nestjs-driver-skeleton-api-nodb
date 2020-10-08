@@ -1,15 +1,49 @@
 #!/usr/bin/env bash
 
-echo '- - - - - Driver - - - - - ' 
+echo '- - - - - AdditionalInfoTemplate - - - - - ' 
 
-echo '- - - - - CheckDriver - - - - - ' 
+echo '- - - - - AdditionalTerminalService - - - - - ' 
 
-echo '- - - - - CultureInfoEnum - - - - - ' 
+echo '- - - - - ADRCheckData - - - - - ' 
 
-echo '- - - - - ClientContextEnum - - - - - ' 
+echo '- - - - - AuthorizationId - - - - - ' 
 
-echo '- - - - - Person - - - - - ' 
+echo '- - - - - AuthorizationIdTemplate - - - - - ' 
 
-echo '- - - - - UserData - - - - - ' 
+echo '- - - - - AuthPosition - - - - - ' 
 
-echo '- - - - - UserIdData - - - - - ' 
+echo '- - - - - Checkin - - - - - ' 
+
+echo '- - - - - CheckinHeader - - - - - ' 
+
+echo '- - - - - CheckResponse - - - - - ' 
+
+echo '- - - - - DailyShifts - - - - - ' 
+
+echo '- - - - - DateTime - - - - - ' 
+
+echo '- - - - - GravimetricQuantity - - - - - ' 
+
+echo '- - - - - Location - - - - - ' 
+
+echo '- - - - - NullableLocation - - - - - ' 
+
+echo '- - - - - PrintableDocument - - - - - ' 
+
+echo '- - - - - ProductQuantity - - - - - ' 
+
+echo '- - - - - Quantity - - - - - ' 
+
+echo '- - - - - Status - - - - - ' 
+
+echo '- - - - - TPUTYPE - - - - - ' 
+
+echo '- - - - - TransportPosition - - - - - ' 
+
+echo '- - - - - Vehicle - - - - - ' 
+
+echo '- - - - - VehicleInfo - - - - - ' 
+
+echo '- - - - - VehicleInfoHeader - - - - - ' 
+
+echo '- - - - - WeeklyShifts - - - - - ' 

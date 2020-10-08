@@ -7,7 +7,7 @@ typeset -gr THISPWD="$(pwd)"
 
 
 function generate_dtos(){
-    local _targets 
+    local _targets
 
     _targets=$(grep -v "^#" <<<"
 AdditionalInfoTemplate
@@ -16,19 +16,19 @@ ADRCheckData
 AuthorizationId
 AuthorizationIdTemplate
 AuthPosition
-# CheckDriver 
+# CheckDriver
 Checkin
 CheckinHeader
 CheckResponse
-# ClientContextEnum 
+# ClientContextEnum
 # CultureInfoEnum
 DailyShifts
 DateTime
-# Driver 
+# Driver
 GravimetricQuantity
 Location
 NullableLocation
-# Person 
+# Person
 PrintableDocument
 ProductQuantity
 Quantity
@@ -41,11 +41,11 @@ Vehicle
 VehicleInfo
 VehicleInfoHeader
 WeeklyShifts
-"
-    local _one _camel _pwd  _target _worker 
+")
+    local _one _camel _pwd  _target _worker
     _pwd=$(pwd)
     _worker="${_pwd}/generate_worker.bash"
-    echo "#!/usr/bin/env bash" > "${_worker}" 
+    echo "#!/usr/bin/env bash" > "${_worker}"
     file_exists "${_worker}"
     chmod +x "${_worker}"
     mkdir -p "${_pwd}/dtos"
@@ -80,9 +80,9 @@ WeeklyShifts
         echo "upper_case_one: ${upper_case_one}"
 
         _target="${_pwd}/dtos/${dto_name_file}"
-if [ ! -e "${_target}" ] ; then 
+if [ ! -e "${_target}" ] ; then
 {
-        # _run_command 
+        # _run_command
         touch "${_target}"
         # echo "${dto_name}" > "${_target}"
 echo "import { ApiProperty } from '@nestjs/swagger'
@@ -95,15 +95,15 @@ export class ${dto_name} {
 
 }
 fi
-      }  
+      }
       fi
-    }  
+    }
     done <<< "${_targets}"
 
     "${_worker}"
-    chown -R "${SUDO_USER}":"${SUDO_USER}" "${_pwd}/dtos" 
+    chown -R "${SUDO_USER}":"${SUDO_USER}" "${_pwd}/dtos"
 
 } # end generate_dtos
 
-generate_dtos 
+generate_dtos
 
