@@ -1,0 +1,10 @@
+
+###
+POST http://localhost:3000/GetAuthPositions
+Content-Type: application/json
+
+{
+    "name": "string"
+}
+
+

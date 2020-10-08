@@ -1,0 +1,10 @@
+
+###
+POST http://localhost:3000/SetCheckin
+Content-Type: application/json
+
+{
+    "name": "string"
+}
+
+

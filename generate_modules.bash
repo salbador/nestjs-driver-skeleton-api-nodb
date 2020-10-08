@@ -61,7 +61,6 @@ RecalculateCompartmentPositions
       if [ -n "${_one}" ] ; then    # if not empty
       {
         echo "" >> "${_worker}"
-        echo "echo '- - - - - ${_one} - - - - - ' " >> "${_worker}"
         cd "${_pwd}" || exit 1
         _camel=$(echo "${_one}" | ToCamel )
         lower_case_one="${_one,,}"   # bash Convert string to lowercase Bash 4 REF: https://stackoverflow.com/questions/2264428/converting-string-to-lower-case-in-bash-shell-scripting
@@ -80,6 +79,8 @@ RecalculateCompartmentPositions
         echo "capitalized_one: ${capitalized_one}"
         echo "lower_case_one: ${lower_case_one}"
         echo "upper_case_one: ${upper_case_one}"
+        echo "import { ${module_name} } from './${_camel}/${_camel}.module';" >> "${_worker}"
+        echo "${module_name}," >> "${_worker}"
 
 
 if [ ! -d "${_target}/${folder_name_file}" ] ; then
@@ -245,8 +246,10 @@ fi
     }
     done <<< "${_targets}"
 
-    "${_worker}"
-    chown -R "${SUDO_USER}":"${SUDO_USER}" "${_pwd}/dtos"
+    chown -R "${SUDO_USER}:${SUDO_USER}" "${_pwd}/src"
+    cat "${_worker}" | nur import | sort
+    cat "${_worker}" | ø import | sort
+    echo "${_worker}"
 
 } # end generate_dtos
 
