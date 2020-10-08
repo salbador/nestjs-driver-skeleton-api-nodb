@@ -10,9 +10,9 @@ export class GetAuthIdProfileController {
       private service: GetAuthIdProfileService
     ) {}
     @Post()
-    async post(@Body() userDto: UserDto): Promise<any>{
+    async getAuthIdProfilePost(@Body() userDto: UserDto): Promise<any>{
         const params = JSON.stringify(userDto);
-        return await axios.post('http://localhost:3000/user',
+        return await axios.post('http://localhost:3000/api/v2/user',
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export class GetAuthIdProfileController {
         }
 
     @Post('/model')
-    modelPost(@Body() getAuthIdProfileDto: GetAuthIdProfileDto):  GetAuthIdProfileInterface {
+    modelGetAuthIdProfilePost(@Body() getAuthIdProfileDto: GetAuthIdProfileDto):  GetAuthIdProfileInterface {
         return this.service.getAuthIdProfileService(getAuthIdProfileDto)
     }
 }

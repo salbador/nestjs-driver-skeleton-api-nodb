@@ -10,9 +10,9 @@ export class SetCheckinController {
       private service: SetCheckinService
     ) {}
     @Post()
-    async post(@Body() userDto: UserDto): Promise<any>{
+    async setCheckinPost(@Body() userDto: UserDto): Promise<any>{
         const params = JSON.stringify(userDto);
-        return await axios.post('http://localhost:3000/user',
+        return await axios.post('http://localhost:3000/api/v2/user',
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export class SetCheckinController {
         }
 
     @Post('/model')
-    modelPost(@Body() setCheckinDto: SetCheckinDto):  SetCheckinInterface {
+    modelSetCheckinPost(@Body() setCheckinDto: SetCheckinDto):  SetCheckinInterface {
         return this.service.setCheckinService(setCheckinDto)
     }
 }

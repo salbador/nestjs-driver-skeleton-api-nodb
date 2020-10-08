@@ -10,9 +10,9 @@ export class CancelCheckinController {
       private service: CancelCheckinService
     ) {}
     @Post()
-    async post(@Body() userDto: UserDto): Promise<any>{
+    async cancelCheckinPost(@Body() userDto: UserDto): Promise<any>{
         const params = JSON.stringify(userDto);
-        return await axios.post('http://localhost:3000/user',
+        return await axios.post('http://localhost:3000/api/v2/user',
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export class CancelCheckinController {
         }
 
     @Post('/model')
-    modelPost(@Body() cancelCheckinDto: CancelCheckinDto):  CancelCheckinInterface {
+    modelCancelCheckinPost(@Body() cancelCheckinDto: CancelCheckinDto):  CancelCheckinInterface {
         return this.service.cancelCheckinService(cancelCheckinDto)
     }
 }

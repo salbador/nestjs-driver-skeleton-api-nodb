@@ -9,8 +9,8 @@ InitiateWeigingModule,
 import { CheckVehiclesModule } from './check-vehicles/check-vehicles.module';
 CheckVehiclesModule,
 
-import { LoadingAdrModule } from './loading-adr/loading-adr.module';
-LoadingAdrModule,
+import { CheckDriverLoadingAdrModule } from './check-driver-loading-adr/check-driver-loading-adr.module';
+CheckDriverLoadingAdrModule,
 
 import { CheckVehicleLoadingAdrModule } from './check-vehicle-loading-adr/check-vehicle-loading-adr.module';
 CheckVehicleLoadingAdrModule,

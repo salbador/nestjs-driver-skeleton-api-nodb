@@ -10,9 +10,9 @@ export class RecalculateCompartmentPositionsController {
       private service: RecalculateCompartmentPositionsService
     ) {}
     @Post()
-    async post(@Body() userDto: UserDto): Promise<any>{
+    async recalculateCompartmentPositionsPost(@Body() userDto: UserDto): Promise<any>{
         const params = JSON.stringify(userDto);
-        return await axios.post('http://localhost:3000/user',
+        return await axios.post('http://localhost:3000/api/v2/user',
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export class RecalculateCompartmentPositionsController {
         }
 
     @Post('/model')
-    modelPost(@Body() recalculateCompartmentPositionsDto: RecalculateCompartmentPositionsDto):  RecalculateCompartmentPositionsInterface {
+    modelRecalculateCompartmentPositionsPost(@Body() recalculateCompartmentPositionsDto: RecalculateCompartmentPositionsDto):  RecalculateCompartmentPositionsInterface {
         return this.service.recalculateCompartmentPositionsService(recalculateCompartmentPositionsDto)
     }
 }

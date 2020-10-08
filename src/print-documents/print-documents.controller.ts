@@ -10,9 +10,9 @@ export class PrintDocumentsController {
       private service: PrintDocumentsService
     ) {}
     @Post()
-    async post(@Body() userDto: UserDto): Promise<any>{
+    async printDocumentsPost(@Body() userDto: UserDto): Promise<any>{
         const params = JSON.stringify(userDto);
-        return await axios.post('http://localhost:3000/user',
+        return await axios.post('http://localhost:3000/api/v2/user',
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export class PrintDocumentsController {
         }
 
     @Post('/model')
-    modelPost(@Body() printDocumentsDto: PrintDocumentsDto):  PrintDocumentsInterface {
+    modelPrintDocumentsPost(@Body() printDocumentsDto: PrintDocumentsDto):  PrintDocumentsInterface {
         return this.service.printDocumentsService(printDocumentsDto)
     }
 }

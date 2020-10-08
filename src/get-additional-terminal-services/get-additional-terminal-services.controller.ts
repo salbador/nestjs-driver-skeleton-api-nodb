@@ -10,9 +10,9 @@ export class GetAdditionalTerminalServicesController {
       private service: GetAdditionalTerminalServicesService
     ) {}
     @Post()
-    async post(@Body() userDto: UserDto): Promise<any>{
+    async getAdditionalTerminalServicesPost(@Body() userDto: UserDto): Promise<any>{
         const params = JSON.stringify(userDto);
-        return await axios.post('http://localhost:3000/user',
+        return await axios.post('http://localhost:3000/api/v2/user',
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export class GetAdditionalTerminalServicesController {
         }
 
     @Post('/model')
-    modelPost(@Body() getAdditionalTerminalServicesDto: GetAdditionalTerminalServicesDto):  GetAdditionalTerminalServicesInterface {
+    modelGetAdditionalTerminalServicesPost(@Body() getAdditionalTerminalServicesDto: GetAdditionalTerminalServicesDto):  GetAdditionalTerminalServicesInterface {
         return this.service.getAdditionalTerminalServicesService(getAdditionalTerminalServicesDto)
     }
 }

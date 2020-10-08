@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 
-export class LoadingAdrDto {
+export class CheckDriverLoadingAdrDto {
   id: string
   @ApiProperty()
   name: string

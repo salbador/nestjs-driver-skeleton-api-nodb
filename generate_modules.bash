@@ -12,9 +12,9 @@ function generate_dtos(){
     _targets=$(grep -v "^#" <<<"
 GetWeight
 InitiateWeiging
-# ${title_one}
+# CheckDriver
 CheckVehicles
-${title_one}LoadingAdr
+CheckDriverLoadingAdr
 CheckVehicleLoadingAdr
 CheckTransportAvailability
 CheckAdditionalInformation
@@ -82,6 +82,7 @@ RecalculateCompartmentPositions
         echo "import { ${module_name} } from './${_camel}/${_camel}.module';" >> "${_worker}"
         echo "${module_name}," >> "${_worker}"
 
+#        rm -rf "${_target}/${folder_name_file}"
 
 if [ ! -d "${_target}/${folder_name_file}" ] ; then
 {
@@ -217,9 +218,9 @@ export class ${title_one}Controller {
       private service: ${title_one}Service
     ) {}
     @Post()
-    async post(@Body() userDto: UserDto): Promise<any>{
+    async ${capitalized_one}Post(@Body() userDto: UserDto): Promise<any>{
         const params = JSON.stringify(userDto);
-        return await axios.post('http://localhost:3000/user',
+        return await axios.post('http://localhost:3000/api/v2/user',
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -231,7 +232,7 @@ export class ${title_one}Controller {
         }
 
     @Post('/model')
-    modelPost(@Body() ${capitalized_one}Dto: ${title_one}Dto):  ${title_one}Interface {
+    model${title_one}Post(@Body() ${capitalized_one}Dto: ${title_one}Dto):  ${title_one}Interface {
         return this.service.${capitalized_one}Service(${capitalized_one}Dto)
     }
 }

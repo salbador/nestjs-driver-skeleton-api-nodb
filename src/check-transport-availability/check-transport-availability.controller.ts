@@ -10,9 +10,9 @@ export class CheckTransportAvailabilityController {
       private service: CheckTransportAvailabilityService
     ) {}
     @Post()
-    async post(@Body() userDto: UserDto): Promise<any>{
+    async checkTransportAvailabilityPost(@Body() userDto: UserDto): Promise<any>{
         const params = JSON.stringify(userDto);
-        return await axios.post('http://localhost:3000/user',
+        return await axios.post('http://localhost:3000/api/v2/user',
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export class CheckTransportAvailabilityController {
         }
 
     @Post('/model')
-    modelPost(@Body() checkTransportAvailabilityDto: CheckTransportAvailabilityDto):  CheckTransportAvailabilityInterface {
+    modelCheckTransportAvailabilityPost(@Body() checkTransportAvailabilityDto: CheckTransportAvailabilityDto):  CheckTransportAvailabilityInterface {
         return this.service.checkTransportAvailabilityService(checkTransportAvailabilityDto)
     }
 }

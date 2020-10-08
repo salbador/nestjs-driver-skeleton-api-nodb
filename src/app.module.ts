@@ -24,7 +24,7 @@ import { GetTerminalShiftsModule } from './get-terminal-shifts/get-terminal-shif
 import { GetVehicleInfoModule } from './get-vehicle-info/get-vehicle-info.module';
 import { GetWeightModule } from './get-weight/get-weight.module';
 import { InitiateWeigingModule } from './initiate-weiging/initiate-weiging.module';
-import { LoadingAdrModule } from './loading-adr/loading-adr.module';
+import { CheckDriverLoadingAdrModule } from './check-driver-loading-adr/check-driver-loading-adr.module';
 import { PrintDocumentsModule } from './print-documents/print-documents.module';
 import { RecalculateCompartmentPositionsModule } from './recalculate-compartment-positions/recalculate-compartment-positions.module';
 import { SetAdditionalTerminalServicesModule } from './set-additional-terminal-services/set-additional-terminal-services.module';
@@ -60,7 +60,7 @@ const config = configuration();
     GetVehicleInfoModule,
     GetWeightModule,
     InitiateWeigingModule,
-    LoadingAdrModule,
+    CheckDriverLoadingAdrModule,
     PrintDocumentsModule,
     RecalculateCompartmentPositionsModule,
     SetAdditionalTerminalServicesModule,

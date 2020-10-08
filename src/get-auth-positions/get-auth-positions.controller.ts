@@ -10,9 +10,9 @@ export class GetAuthPositionsController {
       private service: GetAuthPositionsService
     ) {}
     @Post()
-    async post(@Body() userDto: UserDto): Promise<any>{
+    async getAuthPositionsPost(@Body() userDto: UserDto): Promise<any>{
         const params = JSON.stringify(userDto);
-        return await axios.post('http://localhost:3000/user',
+        return await axios.post('http://localhost:3000/api/v2/user',
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export class GetAuthPositionsController {
         }
 
     @Post('/model')
-    modelPost(@Body() getAuthPositionsDto: GetAuthPositionsDto):  GetAuthPositionsInterface {
+    modelGetAuthPositionsPost(@Body() getAuthPositionsDto: GetAuthPositionsDto):  GetAuthPositionsInterface {
         return this.service.getAuthPositionsService(getAuthPositionsDto)
     }
 }

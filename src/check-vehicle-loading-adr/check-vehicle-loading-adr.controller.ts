@@ -10,9 +10,9 @@ export class CheckVehicleLoadingAdrController {
       private service: CheckVehicleLoadingAdrService
     ) {}
     @Post()
-    async post(@Body() userDto: UserDto): Promise<any>{
+    async checkVehicleLoadingAdrPost(@Body() userDto: UserDto): Promise<any>{
         const params = JSON.stringify(userDto);
-        return await axios.post('http://localhost:3000/user',
+        return await axios.post('http://localhost:3000/api/v2/user',
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export class CheckVehicleLoadingAdrController {
         }
 
     @Post('/model')
-    modelPost(@Body() checkVehicleLoadingAdrDto: CheckVehicleLoadingAdrDto):  CheckVehicleLoadingAdrInterface {
+    modelCheckVehicleLoadingAdrPost(@Body() checkVehicleLoadingAdrDto: CheckVehicleLoadingAdrDto):  CheckVehicleLoadingAdrInterface {
         return this.service.checkVehicleLoadingAdrService(checkVehicleLoadingAdrDto)
     }
 }

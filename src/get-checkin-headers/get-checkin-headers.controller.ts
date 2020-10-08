@@ -10,9 +10,9 @@ export class GetCheckinHeadersController {
       private service: GetCheckinHeadersService
     ) {}
     @Post()
-    async post(@Body() userDto: UserDto): Promise<any>{
+    async getCheckinHeadersPost(@Body() userDto: UserDto): Promise<any>{
         const params = JSON.stringify(userDto);
-        return await axios.post('http://localhost:3000/user',
+        return await axios.post('http://localhost:3000/api/v2/user',
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export class GetCheckinHeadersController {
         }
 
     @Post('/model')
-    modelPost(@Body() getCheckinHeadersDto: GetCheckinHeadersDto):  GetCheckinHeadersInterface {
+    modelGetCheckinHeadersPost(@Body() getCheckinHeadersDto: GetCheckinHeadersDto):  GetCheckinHeadersInterface {
         return this.service.getCheckinHeadersService(getCheckinHeadersDto)
     }
 }

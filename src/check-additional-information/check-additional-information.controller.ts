@@ -10,9 +10,9 @@ export class CheckAdditionalInformationController {
       private service: CheckAdditionalInformationService
     ) {}
     @Post()
-    async post(@Body() userDto: UserDto): Promise<any>{
+    async checkAdditionalInformationPost(@Body() userDto: UserDto): Promise<any>{
         const params = JSON.stringify(userDto);
-        return await axios.post('http://localhost:3000/user',
+        return await axios.post('http://localhost:3000/api/v2/user',
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export class CheckAdditionalInformationController {
         }
 
     @Post('/model')
-    modelPost(@Body() checkAdditionalInformationDto: CheckAdditionalInformationDto):  CheckAdditionalInformationInterface {
+    modelCheckAdditionalInformationPost(@Body() checkAdditionalInformationDto: CheckAdditionalInformationDto):  CheckAdditionalInformationInterface {
         return this.service.checkAdditionalInformationService(checkAdditionalInformationDto)
     }
 }

@@ -10,9 +10,9 @@ export class InitiateWeigingController {
       private service: InitiateWeigingService
     ) {}
     @Post()
-    async post(@Body() userDto: UserDto): Promise<any>{
+    async initiateWeigingPost(@Body() userDto: UserDto): Promise<any>{
         const params = JSON.stringify(userDto);
-        return await axios.post('http://localhost:3000/user',
+        return await axios.post('http://localhost:3000/api/v2/user',
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export class InitiateWeigingController {
         }
 
     @Post('/model')
-    modelPost(@Body() initiateWeigingDto: InitiateWeigingDto):  InitiateWeigingInterface {
+    modelInitiateWeigingPost(@Body() initiateWeigingDto: InitiateWeigingDto):  InitiateWeigingInterface {
         return this.service.initiateWeigingService(initiateWeigingDto)
     }
 }

@@ -10,9 +10,9 @@ export class CheckCompartmentPositionsController {
       private service: CheckCompartmentPositionsService
     ) {}
     @Post()
-    async post(@Body() userDto: UserDto): Promise<any>{
+    async checkCompartmentPositionsPost(@Body() userDto: UserDto): Promise<any>{
         const params = JSON.stringify(userDto);
-        return await axios.post('http://localhost:3000/user',
+        return await axios.post('http://localhost:3000/api/v2/user',
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export class CheckCompartmentPositionsController {
         }
 
     @Post('/model')
-    modelPost(@Body() checkCompartmentPositionsDto: CheckCompartmentPositionsDto):  CheckCompartmentPositionsInterface {
+    modelCheckCompartmentPositionsPost(@Body() checkCompartmentPositionsDto: CheckCompartmentPositionsDto):  CheckCompartmentPositionsInterface {
         return this.service.checkCompartmentPositionsService(checkCompartmentPositionsDto)
     }
 }

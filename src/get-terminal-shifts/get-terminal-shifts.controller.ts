@@ -10,9 +10,9 @@ export class GetTerminalShiftsController {
       private service: GetTerminalShiftsService
     ) {}
     @Post()
-    async post(@Body() userDto: UserDto): Promise<any>{
+    async getTerminalShiftsPost(@Body() userDto: UserDto): Promise<any>{
         const params = JSON.stringify(userDto);
-        return await axios.post('http://localhost:3000/user',
+        return await axios.post('http://localhost:3000/api/v2/user',
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -24,7 +24,7 @@ export class GetTerminalShiftsController {
         }
 
     @Post('/model')
-    modelPost(@Body() getTerminalShiftsDto: GetTerminalShiftsDto):  GetTerminalShiftsInterface {
+    modelGetTerminalShiftsPost(@Body() getTerminalShiftsDto: GetTerminalShiftsDto):  GetTerminalShiftsInterface {
         return this.service.getTerminalShiftsService(getTerminalShiftsDto)
     }
 }
