@@ -49,12 +49,12 @@ export class UserIdDataDTO extends PersonDTO {}
 export class DriverDTO extends PersonDTO {}
 
 export class UserDataDTO {
-    @ApiProperty()
-    cultureInfo: CultureInfoENUMDTO
+    @ApiProperty({name: 'cultureInfo', enum: CultureInfoENUMDTO})
+    cultureInfo: string
     @ApiProperty()
     companyId: string
-    @ApiProperty()
-    clientContext: ClientContextENUMDTO
+    @ApiProperty({name: 'clientContext', enum: ClientContextENUMDTO})
+    clientContext: string
     @ApiProperty()
     userIdData: UserIdDataDTO
 }

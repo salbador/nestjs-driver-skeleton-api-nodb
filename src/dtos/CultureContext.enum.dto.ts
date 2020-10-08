@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
 
-export enum ClientContext {
+export enum ClientContextENUMDTO {
     TOCI = 'TOCI',
     TECI = 'TECI',
     TEOCI = 'TEOCI',

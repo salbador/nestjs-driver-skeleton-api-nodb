@@ -125,19 +125,17 @@ let users: UserDto[];
 let max: number = users.length-1;
 let min: number = 0;
 let random_user = Math.floor(Math.random()*(max-min+1)+min)
+let checkDrivers: CheckDriverDTO[];
+checkDrivers.push({ id: '1', ...check_driver1_dto        })
+checkDrivers.push({ id: '2', ...check_driver2_dto        })
 
 @Injectable()
 export class CheckDriverService {
-    CheckDriver: CheckDriverDTO[] = [
-        { id: '1', ...check_driver1_dto        },
-        { id: '2', ...check_driver2_dto        }
-    ]
-
-    // createTempletu(checkDriverDTO: CheckDriverDTO): CheckDriverInterface {
-    //     this.CheckDriver.push(checkDriverDTO)
-    //     return this.CheckDriver[0]
-    // }
-    createTempletu(userDto: UserDto): User {
+    
+    checkDriverService(checkDriverDTO: CheckDriverDTO): CheckDriverInterface {
+        return checkDrivers[0]
+    }
+    checkDriverUserService(userDto: UserDto): User {
         return users[random_user]
     }
 }
