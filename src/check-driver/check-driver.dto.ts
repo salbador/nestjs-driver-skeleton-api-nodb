@@ -9,7 +9,7 @@ import {
   UserIdDataInterface
 } from './check-driver.interface';
 
-export enum CultureInfoENUMDTO {
+export enum CultureInfoENUMDto {
   de = 'de',
   en = 'en',
   'de-DE' = 'de-DE',
@@ -18,13 +18,13 @@ export enum CultureInfoENUMDTO {
   'es-MX' = 'es-MX',
   'es-SP' = 'es-SP'
 }
-export enum ClientContextENUMDTO {
+export enum ClientContextENUMDto {
   TOCI = 'TOCI',
   TECI = 'TECI',
   TEOCI = 'TEOCI',
   TDCI = 'TDCI'
 }
-export class PersonDTO {      
+export class PersonDto {      
     @ApiProperty() 
     lastName: string; 
     @ApiProperty()
@@ -36,36 +36,36 @@ export class PersonDTO {
     @ApiProperty()
     driverPin: string; 
 }
-export class UserIdDataDTO extends PersonDTO {}
-export class DriverDTO extends PersonDTO {}
+export class UserIdDataDto extends PersonDto {}
+export class DriverDto extends PersonDto {}
 
-// export class UserDataDTO {
+// export class UserDataDto {
 //   @ApiProperty()
-//   cultureInfo: CultureInfoENUMDTO;
+//   cultureInfo: CultureInfoENUMDto;
 //   @ApiProperty() 
 //   companyId: string; 
 //   @ApiProperty()
-//   clientContext: ClientContextENUMDTO; 
+//   clientContext: ClientContextENUMDto; 
 //   @ApiProperty()
-//   userIdData: UserIdDataDTO; 
+//   userIdData: UserIdDataDto; 
 // }
-export class UserDataDTO {
-  @ApiProperty({ name: 'CultureInfo', enum: CultureInfoENUMDTO })
+export class UserDataDto {
+  @ApiProperty({ name: 'CultureInfo', enum: CultureInfoENUMDto })
   cultureInfo: string;
   @ApiProperty() 
   companyId: string; 
-  @ApiProperty({ name: 'ClientContext', enum: ClientContextENUMDTO })
+  @ApiProperty({ name: 'ClientContext', enum: ClientContextENUMDto })
   clientContext: string; 
   @ApiProperty()
-  userIdData: UserIdDataDTO; 
+  userIdData: UserIdDataDto; 
 }
 
-export class CheckDriverDTO {
+export class CheckDriverDto {
   id: string
   @ApiProperty()
   location: string
   @ApiProperty() 
-  userData: UserDataDTO
+  userData: UserDataDto
   @ApiProperty() 
-  driver: DriverDTO
+  driver: DriverDto
 }

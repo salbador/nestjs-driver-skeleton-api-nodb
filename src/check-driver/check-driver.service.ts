@@ -1,4 +1,5 @@
-import { Injectable } from '@nestjs/common';
+import { map } from 'rxjs/operators';
+import { HttpService, Injectable } from '@nestjs/common';
 import {
   DriverInterface,
   CheckDriverInterface,
@@ -8,13 +9,13 @@ import {
   UserDataInterface,
   UserIdDataInterface
 } from './check-driver.interface';
-import {   DriverDTO,
-  CheckDriverDTO,
-  CultureInfoENUMDTO,
-  ClientContextENUMDTO,
-  PersonDTO,
-  UserDataDTO,
-  UserIdDataDTO } from './check-driver.dto';
+import {   DriverDto,
+  CheckDriverDto,
+  CultureInfoENUMDto,
+  ClientContextENUMDto,
+  PersonDto,
+  UserDataDto,
+  UserIdDataDto } from './check-driver.dto';
 
 const cultureInfoInterface: CultureInfoENUMInterface = {
   de: 'de'
@@ -32,9 +33,9 @@ const personInterface: PersonInterface = {
 const userIdDataInterface: UserIdDataInterface = {...personInterface}
 
 const userDataInterface: UserDataInterface = {
-  cultureInfo: CultureInfoENUMDTO['de'],
+  cultureInfo: CultureInfoENUMDto['de'],
   companyId: "022101",
-  clientContext:  ClientContextENUMDTO['TOCI'],
+  clientContext:  ClientContextENUMDto['TOCI'],
   userIdData: userIdDataInterface
 }
 const driverInterface: DriverInterface = {...personInterface}
@@ -44,29 +45,29 @@ const checkDriverInterface: CheckDriverInterface =  {
   userData: userDataInterface,
   driver: driverInterface,
 }
-// let culture_info_dto: CultureInfoENUMDTO = {
+// let culture_info_dto: CultureInfoENUMDto = {
 //   de: 'de'
 // }
-// let client_context_dto: ClientContextENUMDTO = {
+// let client_context_dto: ClientContextENUMDto = {
 //   TOCI:'TOCI'
 // }
-const personDto: PersonDTO = {
+const personDto: PersonDto = {
   lastName: "Alfonso",
   firstName: "Thomas",
   dateOfBirth: new Date(),
   nickname: "thom",
   driverPin: "QWER123"
 }
-const userIdDataDto: UserIdDataDTO = {...personDto}
+const userIdDataDto: UserIdDataDto = {...personDto}
 
-const userDataDto: UserDataDTO = {
-  cultureInfo: CultureInfoENUMDTO['de'],
+const userDataDto: UserDataDto = {
+  cultureInfo: CultureInfoENUMDto['de'],
   companyId: "022101",
-  clientContext: ClientContextENUMDTO['TOCI'],
+  clientContext: ClientContextENUMDto['TOCI'],
   userIdData: userIdDataDto
 }
-const driverDto: DriverDTO = {...personDto}
-const checkDriverDto: CheckDriverDTO =  {
+const driverDto: DriverDto = {...personDto}
+const checkDriverDto: CheckDriverDto =  {
   id: '0',
   location: "Hamburg",
   userData: userDataDto,
@@ -115,18 +116,27 @@ class MyClass {
 
 @Injectable()
 export class CheckDriverService {
-    CheckDriverConstruct: CheckDriverDTO[] = [
+    // constructor(private http: HttpService) {}
+
+    CheckDriverConstruct: CheckDriverDto[] = [
         { id: '1',...checkDriverDto
         },
         { id: '2', ...checkDriverDto        }
     ]
 
-    checkDriverService(checkDriverDTO: CheckDriverDTO): CheckDriverDTO {
-        this.CheckDriverConstruct.push(checkDriverDTO)
+    // getUsers(){
+    //   return this.http.post('http://localhost:3000/users')
+    //     .pipe(
+    //       map(res => res.data)
+    //     )
+    // }
+
+    checkDriverService(checkDriverDto: CheckDriverDto): CheckDriverDto {
+        this.CheckDriverConstruct.push(checkDriverDto)
         return checkDriverDto
     }
-    // checkDriverService(checkDriverDTO: CheckDriverDTO): any {
-    //   // this.CheckDriverConstruct.push(checkDriverDTO)
+    // checkDriverService(checkDriverDto: CheckDriverDto): any {
+    //   // this.CheckDriverConstruct.push(checkDriverDto)
     //   var obj = new MyClass();
     //   const test = obj.showFile();
     //   return test
