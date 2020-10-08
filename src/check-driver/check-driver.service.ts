@@ -121,14 +121,14 @@ export class CheckDriverService {
         { id: '2', ...check_driver_dto        }
     ]
 
-    // checkDriverService(checkDriverDTO: CheckDriverDTO): CheckDriverDTO {
-    //     this.CheckDriverConstruct.push(checkDriverDTO)
-    //     return check_driver_dto
-    // }
-    checkDriverService(checkDriverDTO: CheckDriverDTO): any {
-      // this.CheckDriverConstruct.push(checkDriverDTO)
-      var obj = new MyClass();
-      const test = obj.showFile();
-      return test
+    checkDriverService(checkDriverDTO: CheckDriverDTO): CheckDriverDTO {
+        this.CheckDriverConstruct.push(checkDriverDTO)
+        return check_driver_dto
     }
+    // checkDriverService(checkDriverDTO: CheckDriverDTO): any {
+    //   // this.CheckDriverConstruct.push(checkDriverDTO)
+    //   var obj = new MyClass();
+    //   const test = obj.showFile();
+    //   return test
+    // }
 }
