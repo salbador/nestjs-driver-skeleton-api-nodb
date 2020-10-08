@@ -7,10 +7,10 @@ async function bootstrap() {
 
     // Swagger integration
     const options = new DocumentBuilder()
-        .setTitle('Templetus API')
-        .setDescription('Templetus API Description')
+        .setTitle('Backend Api for Truck Online Checkin (TOCI) to be implemented by a TAS')
+        .setDescription('description')
         .setVersion('1.0')
-        .addTag('Templetus')
+        .addTag('')
         .build()
     const document = SwaggerModule.createDocument(app, options)
     SwaggerModule.setup('api', app, document)
