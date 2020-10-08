@@ -10,13 +10,37 @@ function generate_dtos(){
     local _targets 
 
     _targets=$(grep -v "^#" <<<"
-# Driver 
+AdditionalInfoTemplate
+AdditionalTerminalService
+ADRCheckData
+AuthorizationId
+AuthorizationIdTemplate
+AuthPosition
 # CheckDriver 
-# CultureInfoEnum
+Checkin
+CheckinHeader
+CheckResponse
 # ClientContextEnum 
+# CultureInfoEnum
+DailyShifts
+DateTime
+# Driver 
+GravimetricQuantity
+Location
+NullableLocation
 # Person 
-# UserData 
+PrintableDocument
+ProductQuantity
+Quantity
+Status
+TPUTYPE
+TransportPosition
+# UserData
 # UserIdData
+Vehicle
+VehicleInfo
+VehicleInfoHeader
+WeeklyShifts
 "
     local _one _camel _pwd  _target _worker 
     _pwd=$(pwd)
