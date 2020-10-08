@@ -1,4 +1,10 @@
-import { HttpService, Controller, Get, Post, Body, Param, Put, Delete } from '@nestjs/common';
+import {
+  // HttpService,
+  Controller,
+  // Get,
+  Post, Body,
+  // Param, Put, Delete
+} from '@nestjs/common';
 import { HttpClient } from '@angular/common/http';
 // import { Http } from '@angular/http';
 // import { AxiosInstance, AxiosRequestConfig, AxiosResponse } from 'axios';
@@ -10,7 +16,7 @@ import { UserDto, UserService, UserInterface } from '../user/user.module';
 
 // import { ApiTags, ApiParam } from '@nestjs/swagger'
 // import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+// import { map } from 'rxjs/operators';
 
 
 // const http = Http

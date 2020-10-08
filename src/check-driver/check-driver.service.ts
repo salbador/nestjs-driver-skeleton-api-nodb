@@ -1,28 +1,21 @@
 import { map } from 'rxjs/operators';
 import { HttpService, Injectable } from '@nestjs/common';
 import {
-  DriverInterface,
   CheckDriverInterface,
-  CultureInfoENUMInterface,
-  ClientContextENUMInterface,
+  CultureInfoEnumInterface,
+  ClientContextEnumInterface,
   PersonInterface,
   UserDataInterface,
-  UserIdDataInterface
 } from './check-driver.interface';
-import {   DriverDto,
-  CheckDriverDto,
-  CultureInfoENUMDto,
-  ClientContextENUMDto,
-  PersonDto,
-  UserDataDto,
-  UserIdDataDto } from './check-driver.dto';
+import { CheckDriverDto } from './check-driver.dto';
 
-const cultureInfoInterface: CultureInfoENUMInterface = {
-  de: 'de'
-}
-const clientContextInterface: ClientContextENUMInterface = {
-  TOCI:'TOCI'
-}
+import { CultureInfoEnumDto } from '../../dtos/culture-info-enum.dto'
+import { ClientContextEnumDto } from '../../dtos/client-context-enum.dto'
+import { UserIdDataDto } from '../../dtos/user-id-data.dto'
+import { UserDataDto } from '../../dtos/user-data.dto'
+import { DriverDto } from '../../dtos/driver.dto'
+import { PersonDto } from '../../dtos/person.dto'
+
 const personInterface: PersonInterface = {
   lastName: "Alfonso",
   firstName: "Thomas",
@@ -30,27 +23,18 @@ const personInterface: PersonInterface = {
   nickname: "thom",
   driverPin: "QWER123"
 }
-const userIdDataInterface: UserIdDataInterface = {...personInterface}
-
 const userDataInterface: UserDataInterface = {
-  cultureInfo: CultureInfoENUMDto['de'],
+  cultureInfo: CultureInfoEnumDto['de'],
   companyId: "022101",
-  clientContext:  ClientContextENUMDto['TOCI'],
-  userIdData: userIdDataInterface
+  clientContext:  ClientContextEnumDto['TOCI'],
+  userIdData: personInterface
 }
-const driverInterface: DriverInterface = {...personInterface}
 const checkDriverInterface: CheckDriverInterface =  {
   id: '0',
   location: "Hamburg",
   userData: userDataInterface,
-  driver: driverInterface,
+  driver: personInterface,
 }
-// let culture_info_dto: CultureInfoENUMDto = {
-//   de: 'de'
-// }
-// let client_context_dto: ClientContextENUMDto = {
-//   TOCI:'TOCI'
-// }
 const personDto: PersonDto = {
   lastName: "Alfonso",
   firstName: "Thomas",
@@ -61,9 +45,9 @@ const personDto: PersonDto = {
 const userIdDataDto: UserIdDataDto = {...personDto}
 
 const userDataDto: UserDataDto = {
-  cultureInfo: CultureInfoENUMDto['de'],
+  cultureInfo: CultureInfoEnumDto['de'],
   companyId: "022101",
-  clientContext: ClientContextENUMDto['TOCI'],
+  clientContext: ClientContextEnumDto['TOCI'],
   userIdData: userIdDataDto
 }
 const driverDto: DriverDto = {...personDto}
@@ -73,46 +57,6 @@ const checkDriverDto: CheckDriverDto =  {
   userData: userDataDto,
   driver: driverDto,
 }
-class MyClass {
-
-  // Here we import the File System module of node
-  private fs = require('fs');
-
-  constructor() { }
-
-  createFile() {
-
-      this.fs.writeFile('file.txt', 'I am cool!',  function(err) {
-          if (err) {
-              return console.error(err);
-          }
-          console.log("File created!");
-      });
-  }
-
-  showFile() {
-
-      this.fs.readFile('test.json', 'utf-8', function (err, data) {
-          if (err) {
-              console.error(err);
-              return err
-          }
-          console.log("Asynchronous read: " + data.toString());
-          return data.toString();
-      });
-  }
-}
-
-// Usage
-// var obj = new MyClass();
-// // obj.createFile();
-// const test = obj.showFile();
-
-// import json from './test.json';
-// console.log(json, 'the json obj');
-
-// import { readFileSync } from 'fs';
-// const test = readFileSync('./testjson', 'utf-8');
 
 @Injectable()
 export class CheckDriverService {
@@ -135,10 +79,4 @@ export class CheckDriverService {
         this.CheckDriverConstruct.push(checkDriverDto)
         return checkDriverDto
     }
-    // checkDriverService(checkDriverDto: CheckDriverDto): any {
-    //   // this.CheckDriverConstruct.push(checkDriverDto)
-    //   var obj = new MyClass();
-    //   const test = obj.showFile();
-    //   return test
-    // }
 }

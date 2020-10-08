@@ -1,39 +1,31 @@
-import { ApiProperty } from '@nestjs/swagger'
-import {   DriverDto, 
-  CheckDriverDto, 
-  CultureInfoENUMDto,
-  ClientContextENUMDto, 
-  PersonDto, 
-  UserDataDto, 
-  UserIdDataDto } from './check-driver.dto';
+import { CultureInfoEnumDto } from '../../dtos/culture-info-enum.dto'
+import { ClientContextEnumDto } from '../../dtos/client-context-enum.dto'
 
-export type CultureInfoENUMInterface = {
-    [key in CultureInfoENUMDto]?: string
+export type CultureInfoEnumInterface = {
+    [key in CultureInfoEnumDto]?: string
 }
-export type ClientContextENUMInterface = {
-    [key in ClientContextENUMDto]?: string
+export type ClientContextEnumInterface = {
+    [key in ClientContextEnumDto]?: string
 }
 
-export interface PersonInterface {      
-    lastName: string 
-    firstName: string 
-    dateOfBirth: Date 
-    nickname: string 
-    driverPin: string 
+export interface PersonInterface {
+    lastName: string
+    firstName: string
+    dateOfBirth: Date
+    nickname: string
+    driverPin: string
 }
-export interface UserIdDataInterface extends PersonInterface {}
 
 export interface UserDataInterface {
-  cultureInfo: string 
-  companyId: string 
-  clientContext: string 
-  userIdData: UserIdDataInterface 
+  cultureInfo: string
+  companyId: string
+  clientContext: string
+  userIdData: PersonInterface
 }
 
-export interface DriverInterface extends PersonInterface {}
 export interface CheckDriverInterface {
   id?: string
   location: string
   userData: UserDataInterface
-  driver: DriverInterface
+  driver: PersonInterface
 }
