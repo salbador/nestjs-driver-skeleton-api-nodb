@@ -54,8 +54,8 @@ lerna-debug.log*
 "
 
 function generate_clean(){
-  local _routes 
-  echo Removing all node modules 
+  local _routes
+  echo Removing all node modules
   rm -rf node_modules
 
   echo Removing all "$(date +"%Y%m%d")"
@@ -64,12 +64,12 @@ function generate_clean(){
   local _baselist=$(cat src/app.module.ts | grep Module | grep import | cut -d"/" -f2- | cüt "';" | cüt "module" )
   local _protectedModules=$(cat src/app.module.ts | grep Module | grep import | cut -d"/" -f2- | cüt "';" )
   local _one _camel _pwd _from _to _run  _msg _template _target _base _controller _service
-  local -fr _delete 
+  local -fr _delete
   function _delete(){
       local _target="${*}"
-      if [[ -e "${_target}" ]] ; then 
+      if [[ -e "${_target}" ]] ; then
       {
-        echo Deleting  "${_target}" 
+        echo Deleting  "${_target}"
         rm "${_target}"
       } else {
         echo "${_target}" path does not exists
@@ -79,18 +79,25 @@ function generate_clean(){
   local -i _err
   _pwd=$(pwd)
   echo Resetting .gitignore
-  echo "${gitfile}" > "${_pwd}/.gitignore" 
+  echo "${gitfile}" > "${_pwd}/.gitignore"
   echo Resetting .nurignore_files
-  echo -e "generate_routes.bash\ngenerate_worker.bash\ngenerate_clean.bash\n" > "${_pwd}/.nurignore_files"   
+  local _ignore_files=".gitignore
+.temp_keys
+generate_targets.bash
+generate_routes.bash
+generate_worker.bash
+generate_clean.bash
+  "
+  echo -e "${_ignore_files}" > "${_pwd}/.nurignore_files"
   echo Resetting .nurignore_dirs
-  echo -e ".git\n" > "${_pwd}/.nurignore_dirs" 
+  echo -e ".git\n" > "${_pwd}/.nurignore_dirs"
   echo Resetting .ersetzeignore_files
-  echo -e "generate_routes.bash\ngenerate_worker.bash\ngenerate_clean.bash\n" > "${_pwd}/.ersetzeignore_files" 
+  echo -e "${_ignore_files}" > "${_pwd}/.ersetzeignore_files"
   echo Resetting .ersetzeignore_dirs
-  echo -e ".git\n" > "${_pwd}/.ersetzeignore_dirs" 
+  echo -e ".git\n" > "${_pwd}/.ersetzeignore_dirs"
   _template="${_pwd}/src/templetus"
   _base="${_pwd}/src"
-  local -fr _loop_delete_baselist 
+  local -fr _loop_delete_baselist
   local -i _count=0
   function _loop_delete_baselist(){
     local _context="${1}"
@@ -102,19 +109,19 @@ function generate_clean(){
         _target="${_base}/${_one}${_context}.ts"
         _delete "${_target}"
         # (( _count++ ))
-        # if (( _count > 5 )) ; then 
+        # if (( _count > 5 )) ; then
         # {
         #   exit 0
         # }
         # fi
-      }  
+      }
       fi
-    }  
+    }
     done <<< "${_baselist}"
   } # end _loop_delete
-  _loop_delete_baselist controller 
-  _loop_delete_baselist service 
-   local -fr _loop_delete__folders_inside 
+  _loop_delete_baselist controller
+  _loop_delete_baselist service
+   local -fr _loop_delete__folders_inside
   function _loop_delete__folders_inside(){
     local _context="${1}"
     while read -r _one; do
@@ -123,10 +130,10 @@ function generate_clean(){
       if [ -n "${_one}" ] ; then    # if not empty
       {
         _target="${_pwd}/src/${_one}"
-        if [[ -e "${_target}" ]] ; then 
+        if [[ -e "${_target}" ]] ; then
         {
           # mkdir -p _target="${_pwd}/src/.git"
-          . cd "${_target}" 
+          . cd "${_target}"
           # äö templetu ${_one}
           # to_this templetu ${_one}
           # rm -rf -p "${_pwd}/src/.git"
@@ -139,18 +146,18 @@ function generate_clean(){
           _target=$(ls -1 ${_target}/*.module.ts | grep -v "${_one}/${_one}")
           _delete "${_target}"
           # (( _count++ ))
-          # if (( _count > 1 )) ; then 
+          # if (( _count > 1 )) ; then
           # {
           #   exit 0
           # }
           # fi
         }
-        fi        
-      }  
+        fi
+      }
       fi
-    }  
+    }
     done <<< "${_folders}"
-  } # end _loop_delete 
+  } # end _loop_delete
   _loop_delete__folders_inside "${_one}"
 
 } # end generate_clean

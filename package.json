@@ -30,6 +30,8 @@
     "@nestjs/swagger": "^4.5.10",
     "axios": "^0.20.0",
     "bcryptjs": "^2.4.3",
+    "config": "^3.3.2",
+    "dotenv": "^8.2.0",
     "faker": "^5.1.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
