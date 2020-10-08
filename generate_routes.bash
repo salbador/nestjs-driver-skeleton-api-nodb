@@ -49,28 +49,11 @@ function addimportsmodule(){
     echo "#!/usr/bin/env bash" > "${_worker}"
     echo "${appmodule}" > "${_pwd}/src/app.module.ts"
     chmod +x "${_worker}"
-    function toLower(){
-        echo "${@,,}"
-    }
-    function toUpper(){
-        echo "${@^^}"
-    }
-    function toCapitze(){
-        echo "${@~}"
-    }
 
     local lower_case_one="${_template,,}"   # bash Convert string to lowercase Bash 4 REF: https://stackoverflow.com/questions/2264428/converting-string-to-lower-case-in-bash-shell-scripting
     local upper_case_one="${_template^^}"   # bash Convert string to uppercase Bash 4 REF: https://stackoverflow.com/questions/2264428/converting-string-to-lower-case-in-bash-shell-scripting
     local capitalized_one="${_template~}"   # bash Convert string to Toggled Bash 4 REF: https://stackoverflow.com/questions/2264428/converting-string-to-lower-case-in-bash-shell-scripting
     local title_one
-    function Titlelize(){
-        # echo "remote_available_packages" | sed -E 's/_(.)/\U\1/g' -> remoteAvailablePackages
-        sed -E 's/_(.)/\U\1/g'  # REF: https://unix.stackexchange.com/questions/416656/underscore-to-camelcase
-    }
-    function ToCamel(){
-        sed --expression 's/\([A-Z]\)/-\L\1/g' --expression 's/^-//' | sed 's/-a-d-r/-adr/'
-    }
-
 
     while read -r _one; do
     {

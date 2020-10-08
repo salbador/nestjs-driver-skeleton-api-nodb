@@ -425,14 +425,33 @@ function ensure_attempt_npm_nest_install(){
   exit 1
 } # end ensure_attempt_node_install
 
+    function toLower(){
+        echo "${@,,}"
+    }
+    function toUpper(){
+        echo "${@^^}"
+    }
+    function toCapitze(){
+        echo "${@~}"
+    }
+
+    function Titlelize(){
+        # echo "remote_available_packages" | sed -E 's/_(.)/\U\1/g' -> remoteAvailablePackages
+        sed -E 's/_(.)/\U\1/g'  # REF: https://unix.stackexchange.com/questions/416656/underscore-to-camelcase
+    }
+    function ToCamel(){
+        sed --expression 's/\([A-Z]\)/-\L\1/g' --expression 's/^-//' | sed 's/-a-d-r/-adr/'
+    }
+
+
 function check_system_requirements(){
   ( it_exists_with_spaces "logs" ) && rm -rf logs
   directory_does_not_exist logs
   mkdir -p logs
   directory_exists logs
-  verify_is_installed git
-  verify_is_installed awk
-  verify_is_installed date
+  it_does_not_exist_with_spaces .required_git && verify_is_installed git && touch .required_git   
+  it_does_not_exist_with_spaces .required_awk && verify_is_installed awk  && touch .required_awk 
+  it_does_not_exist_with_spaces .required_date && verify_is_installed date  && touch .required_date   
   # verify_installed_version "node --version"  "$(cat .nvmrc 2>&1)"
   verify_node_correct_version 
   # if is_not_installed nest ; then
@@ -442,7 +461,7 @@ function check_system_requirements(){
   #   ensure_attempt_npm_nest_install " "
   # }
   # fi
-  _run_command npm install 
+  it_does_not_exist_with_spaces .required_npm_install && _run_command npm install &&   touch .required_npm_install 
   directory_exists node_modules
 
 } 

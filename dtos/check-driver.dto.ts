@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger'
-import { UserDataDto } from '../../dtos/user-data.dto'
-import { DriverDto } from '../../dtos/driver.dto'
+import { UserDataDto } from './user-data.dto'
+import { DriverDto } from './driver.dto'
 
 export class CheckDriverDto {
   id: string
