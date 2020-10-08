@@ -1,48 +1,48 @@
 import { Injectable } from '@nestjs/common';
-import { 
-  DriverInterface, 
-  CheckDriverInterface, 
+import {
+  DriverInterface,
+  CheckDriverInterface,
   CultureInfoENUMInterface,
-  ClientContextENUMInterface, 
-  PersonInterface, 
-  UserDataInterface, 
+  ClientContextENUMInterface,
+  PersonInterface,
+  UserDataInterface,
   UserIdDataInterface
 } from './check-driver.interface';
-import {   DriverDTO, 
-  CheckDriverDTO, 
+import {   DriverDTO,
+  CheckDriverDTO,
   CultureInfoENUMDTO,
-  ClientContextENUMDTO, 
-  PersonDTO, 
-  UserDataDTO, 
+  ClientContextENUMDTO,
+  PersonDTO,
+  UserDataDTO,
   UserIdDataDTO } from './check-driver.dto';
 
-let culture_info_interface: CultureInfoENUMInterface = {
+const cultureInfoInterface: CultureInfoENUMInterface = {
   de: 'de'
 }
-let client_context_interface: ClientContextENUMInterface = {
+const clientContextInterface: ClientContextENUMInterface = {
   TOCI:'TOCI'
 }
-let person_interface: PersonInterface = {
+const personInterface: PersonInterface = {
   lastName: "Alfonso",
-  firstName: "Thomas", 
-  dateOfBirth: new Date(), 
-  nickname: "thom", 
-  driverPin: "QWER123" 
+  firstName: "Thomas",
+  dateOfBirth: new Date(),
+  nickname: "thom",
+  driverPin: "QWER123"
 }
-let user_id_data_interface: UserIdDataInterface = {...person_interface}
+const userIdDataInterface: UserIdDataInterface = {...personInterface}
 
-let user_data_interface: UserDataInterface = {
-  cultureInfo: CultureInfoENUMDTO['de'], 
-  companyId: "022101", 
+const userDataInterface: UserDataInterface = {
+  cultureInfo: CultureInfoENUMDTO['de'],
+  companyId: "022101",
   clientContext:  ClientContextENUMDTO['TOCI'],
-  userIdData: user_id_data_interface 
+  userIdData: userIdDataInterface
 }
-let driver_interface: DriverInterface = {...person_interface}
-let check_driver_interface: CheckDriverInterface =  {
+const driverInterface: DriverInterface = {...personInterface}
+const checkDriverInterface: CheckDriverInterface =  {
   id: '0',
   location: "Hamburg",
-  userData: user_data_interface, 
-  driver: driver_interface, 
+  userData: userDataInterface,
+  driver: driverInterface,
 }
 // let culture_info_dto: CultureInfoENUMDTO = {
 //   de: 'de'
@@ -50,28 +50,28 @@ let check_driver_interface: CheckDriverInterface =  {
 // let client_context_dto: ClientContextENUMDTO = {
 //   TOCI:'TOCI'
 // }
-let person_dto: PersonDTO = {
+const personDto: PersonDTO = {
   lastName: "Alfonso",
-  firstName: "Thomas", 
-  dateOfBirth: new Date(), 
-  nickname: "thom", 
-  driverPin: "QWER123" 
+  firstName: "Thomas",
+  dateOfBirth: new Date(),
+  nickname: "thom",
+  driverPin: "QWER123"
 }
-let user_id_data_dto: UserIdDataDTO = {...person_dto}
+const userIdDataDto: UserIdDataDTO = {...personDto}
 
-let user_data_dto: UserDataDTO = {
-  cultureInfo: CultureInfoENUMDTO['de'], 
-  companyId: "022101", 
+const userDataDto: UserDataDTO = {
+  cultureInfo: CultureInfoENUMDTO['de'],
+  companyId: "022101",
   clientContext: ClientContextENUMDTO['TOCI'],
-  userIdData: user_id_data_dto 
+  userIdData: userIdDataDto
 }
-let driver_dto: DriverDTO = {...person_dto}
-let check_driver_dto: CheckDriverDTO =  {
+const driverDto: DriverDTO = {...personDto}
+const checkDriverDto: CheckDriverDTO =  {
   id: '0',
   location: "Hamburg",
-  userData: user_data_dto, 
-  driver: driver_dto, 
-}  
+  userData: userDataDto,
+  driver: driverDto,
+}
 class MyClass {
 
   // Here we import the File System module of node
@@ -116,14 +116,14 @@ class MyClass {
 @Injectable()
 export class CheckDriverService {
     CheckDriverConstruct: CheckDriverDTO[] = [
-        { id: '1',...check_driver_dto 
+        { id: '1',...checkDriverDto
         },
-        { id: '2', ...check_driver_dto        }
+        { id: '2', ...checkDriverDto        }
     ]
 
     checkDriverService(checkDriverDTO: CheckDriverDTO): CheckDriverDTO {
         this.CheckDriverConstruct.push(checkDriverDTO)
-        return check_driver_dto
+        return checkDriverDto
     }
     // checkDriverService(checkDriverDTO: CheckDriverDTO): any {
     //   // this.CheckDriverConstruct.push(checkDriverDTO)
