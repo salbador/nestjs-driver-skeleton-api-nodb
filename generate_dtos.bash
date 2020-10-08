@@ -9,14 +9,14 @@ typeset -gr THISPWD="$(pwd)"
 function generate_dtos(){
     local _targets 
 
-    _targets="
-Driver 
-CheckDriver 
-CultureInfoEnum
-ClientContextEnum 
-Person 
-UserData 
-UserIdData
+    _targets=$(grep -v "^#" <<<"
+# Driver 
+# CheckDriver 
+# CultureInfoEnum
+# ClientContextEnum 
+# Person 
+# UserData 
+# UserIdData
 "
     local _one _camel _pwd  _target _worker 
     _pwd=$(pwd)
