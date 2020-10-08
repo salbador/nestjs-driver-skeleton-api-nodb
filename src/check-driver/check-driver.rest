@@ -1,0 +1,40 @@
+###
+POST http://localhost:3000/checkDriver
+Content-Type: application/json
+
+{
+    "location": "Hamburg",
+    "userData": {
+        "cultureInfo:" "de"
+        "companyId": "123123"
+        "clientContext": "TOCI",
+        "userIdData": {
+            "lastName": "Johnson"
+        }, 
+        "driver": {
+            "lastName": "Johnson"
+        }
+
+    }
+}
+
+
+###
+POST http://localhost:3000/checkDriver
+Content-Type: application/json
+
+{
+    "location": "Hamburg",
+    "userData": {
+        "cultureInfo:" "de"
+        "companyId": "234234"
+        "clientContext": "TOCI",
+        "userIdData": {
+            "lastName": "Hayes"
+        }, 
+        "driver": {
+            "lastName": "Hayes"
+        }
+
+    }
+}
