@@ -4,6 +4,9 @@ import { CheckPreloadingsService } from './check-preloadings.service';
 import { CheckPreloadingsInterface } from './check-preloadings.interface';
 import { CheckPreloadingsDto } from './check-preloadings.dto';
 import { UserDto, UserService, UserInterface } from '../user/user.module';
+import { ApiTags, ApiOkResponse, ApiNotFoundResponse, ApiInternalServerErrorResponse } from '@nestjs/swagger'
+
+@ApiTags('DriverCheckin')
 @Controller('checkPreloadings')
 export class CheckPreloadingsController {
     constructor(

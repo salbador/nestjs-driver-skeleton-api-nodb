@@ -14,19 +14,27 @@ import { CheckDriverInterface } from './check-driver.interface';
 import { CheckDriverDto } from './check-driver.dto';
 import { UserDto, UserService, UserInterface } from '../user/user.module';
 
-import { ApiTags, ApiParam } from '@nestjs/swagger'
+import { ApiTags, ApiOkResponse, ApiNotFoundResponse, ApiInternalServerErrorResponse } from '@nestjs/swagger'
 // import { Observable } from 'rxjs';
 // import { map } from 'rxjs/operators';
 
 
 // const http = Http
 const httpClient = HttpClient
-@ApiTags('checkDriver')    // Swagger Tag Decorator
+@ApiTags('Checks')    // Swagger Tag Decorator
 @Controller('checkDriver')
 export class CheckDriverController {
     constructor(
       private service: CheckDriverService
     ) {}
+    @ApiOkResponse({
+        description: 'Retrieved UserDto by ID successfully',
+        type: UserDto
+    })
+    @ApiNotFoundResponse({ description: 'No UserDto found for ID' })
+    @ApiInternalServerErrorResponse({
+       description: 'Internal server error',
+    })
     @Post()
     async post(@Body() userDto: UserDto): Promise<any>{
         const params = JSON.stringify(userDto);
