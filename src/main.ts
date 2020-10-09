@@ -30,9 +30,9 @@ async function bootstrap() {
       .setLicense(config.swagger.license.description, config.swagger.license.description)
       .addServer(server)
       .setExternalDoc(config.swagger.externalDoc.description, config.swagger.externalDoc.url)
-      .addTag('root')
-      .addTag('posts')
-      .addTag('users')
+      // .addTag('root')
+      // .addTag('posts')
+      // .addTag('users')
       // TODO .addBearerAuth('Authorization', 'header')
       .build();
 

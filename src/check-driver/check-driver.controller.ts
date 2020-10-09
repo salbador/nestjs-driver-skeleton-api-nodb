@@ -14,13 +14,14 @@ import { CheckDriverInterface } from './check-driver.interface';
 import { CheckDriverDto } from './check-driver.dto';
 import { UserDto, UserService, UserInterface } from '../user/user.module';
 
-// import { ApiTags, ApiParam } from '@nestjs/swagger'
+import { ApiTags, ApiParam } from '@nestjs/swagger'
 // import { Observable } from 'rxjs';
 // import { map } from 'rxjs/operators';
 
 
 // const http = Http
 const httpClient = HttpClient
+@ApiTags('checkDriver')    // Swagger Tag Decorator
 @Controller('checkDriver')
 export class CheckDriverController {
     constructor(
