@@ -1,76 +1,67 @@
 #!/usr/bin/env bash
 
-import { GetWeightModule } from './get-weight/get-weight.module';
-GetWeightModule,
+echo '- - - - - AdditionalInfoTemplate - - - - - ' 
 
-import { InitiateWeigingModule } from './initiate-weiging/initiate-weiging.module';
-InitiateWeigingModule,
+echo '- - - - - AdditionalTerminalService - - - - - ' 
 
-import { CheckVehiclesModule } from './check-vehicles/check-vehicles.module';
-CheckVehiclesModule,
+echo '- - - - - ADRCheckData - - - - - ' 
 
-import { CheckDriverLoadingAdrModule } from './check-driver-loading-adr/check-driver-loading-adr.module';
-CheckDriverLoadingAdrModule,
+echo '- - - - - AuthorizationId - - - - - ' 
 
-import { CheckVehicleLoadingAdrModule } from './check-vehicle-loading-adr/check-vehicle-loading-adr.module';
-CheckVehicleLoadingAdrModule,
+echo '- - - - - AuthorizationIdTemplate - - - - - ' 
 
-import { CheckTransportAvailabilityModule } from './check-transport-availability/check-transport-availability.module';
-CheckTransportAvailabilityModule,
+echo '- - - - - AuthPosition - - - - - ' 
 
-import { CheckAdditionalInformationModule } from './check-additional-information/check-additional-information.module';
-CheckAdditionalInformationModule,
+echo '- - - - - ArrivalDateTimeSlot - - - - - ' 
 
-import { CheckCompartmentPositionsModule } from './check-compartment-positions/check-compartment-positions.module';
-CheckCompartmentPositionsModule,
+echo '- - - - - CheckDriver - - - - - ' 
 
-import { CheckPreloadingsModule } from './check-preloadings/check-preloadings.module';
-CheckPreloadingsModule,
+echo '- - - - - Checkin - - - - - ' 
 
-import { ConvertToUomModule } from './convert-to-uom/convert-to-uom.module';
-ConvertToUomModule,
+echo '- - - - - CheckinHeader - - - - - ' 
 
-import { GetTerminalShiftsModule } from './get-terminal-shifts/get-terminal-shifts.module';
-GetTerminalShiftsModule,
+echo '- - - - - CheckResponse - - - - - ' 
 
-import { GetVehicleInfoModule } from './get-vehicle-info/get-vehicle-info.module';
-GetVehicleInfoModule,
+echo '- - - - - ClientContextEnum - - - - - ' 
 
-import { GetAuthIdProfileModule } from './get-auth-id-profile/get-auth-id-profile.module';
-GetAuthIdProfileModule,
+echo '- - - - - CultureInfoEnum - - - - - ' 
 
-import { GetAuthPositionsModule } from './get-auth-positions/get-auth-positions.module';
-GetAuthPositionsModule,
+echo '- - - - - DailyShifts - - - - - ' 
 
-import { GetAdditionalInfoTermplatesModule } from './get-additional-info-termplates/get-additional-info-termplates.module';
-GetAdditionalInfoTermplatesModule,
+echo '- - - - - DateTime - - - - - ' 
 
-import { GetCheckinHeadersModule } from './get-checkin-headers/get-checkin-headers.module';
-GetCheckinHeadersModule,
+echo '- - - - - Driver - - - - - ' 
 
-import { GetCheckinModule } from './get-checkin/get-checkin.module';
-GetCheckinModule,
+echo '- - - - - GravimetricQuantity - - - - - ' 
 
-import { GetAdditionalTerminalServicesModule } from './get-additional-terminal-services/get-additional-terminal-services.module';
-GetAdditionalTerminalServicesModule,
+echo '- - - - - Location - - - - - ' 
 
-import { GetPrintableDocumentsModule } from './get-printable-documents/get-printable-documents.module';
-GetPrintableDocumentsModule,
+echo '- - - - - NullableLocation - - - - - ' 
 
-import { CancelCheckinModule } from './cancel-checkin/cancel-checkin.module';
-CancelCheckinModule,
+echo '- - - - - Person - - - - - ' 
 
-import { SetCheckinModule } from './set-checkin/set-checkin.module';
-SetCheckinModule,
+echo '- - - - - PrintableDocument - - - - - ' 
 
-import { SetCheckinStatusModule } from './set-checkin-status/set-checkin-status.module';
-SetCheckinStatusModule,
+echo '- - - - - ProductQuantity - - - - - ' 
 
-import { SetAdditionalTerminalServicesModule } from './set-additional-terminal-services/set-additional-terminal-services.module';
-SetAdditionalTerminalServicesModule,
+echo '- - - - - Quantity - - - - - ' 
 
-import { PrintDocumentsModule } from './print-documents/print-documents.module';
-PrintDocumentsModule,
+echo '- - - - - Status - - - - - ' 
 
-import { RecalculateCompartmentPositionsModule } from './recalculate-compartment-positions/recalculate-compartment-positions.module';
-RecalculateCompartmentPositionsModule,
+echo '- - - - - TPUTYPE - - - - - ' 
+
+echo '- - - - - TransportPosition - - - - - ' 
+
+echo '- - - - - UserData - - - - - ' 
+
+echo '- - - - - UserIdData - - - - - ' 
+
+echo '- - - - - Vehicle - - - - - ' 
+
+echo '- - - - - VehicleInfo - - - - - ' 
+
+echo '- - - - - VehicleInfoHeader - - - - - ' 
+
+echo '- - - - - vehicleTypeEnum - - - - - ' 
+
+echo '- - - - - WeeklyShifts - - - - - ' 

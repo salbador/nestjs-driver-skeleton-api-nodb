@@ -16,30 +16,32 @@ ADRCheckData
 AuthorizationId
 AuthorizationIdTemplate
 AuthPosition
-# CheckDriver
+ArrivalDateTimeSlot
+CheckDriver
 Checkin
 CheckinHeader
 CheckResponse
-# ClientContextEnum
-# CultureInfoEnum
+ClientContextEnum
+CultureInfoEnum
 DailyShifts
 DateTime
-# Driver
+Driver
 GravimetricQuantity
 Location
 NullableLocation
-# Person
+Person
 PrintableDocument
 ProductQuantity
 Quantity
 Status
 TPUTYPE
 TransportPosition
-# UserData
-# UserIdData
+UserData
+UserIdData
 Vehicle
 VehicleInfo
 VehicleInfoHeader
+vehicleTypeEnum
 WeeklyShifts
 ")
     local _one _camel _pwd  _target _worker
@@ -56,6 +58,9 @@ WeeklyShifts
     local title_one
     local dto_name
     local dto_name_file
+    local data_name
+    local data_name_file
+    local _target_data
     while read -r _one; do
     {
       echo "Testing ${_one}"
@@ -71,6 +76,8 @@ WeeklyShifts
         title_one=$(echo "${_one}" | Titlelize )
         dto_name="${title_one}Dto"
         dto_name_file="${_camel}.dto.ts"
+        data_name="${title_one}Data"
+        data_name_file="${_camel}.data.ts"
         echo "_one: ${_one}"
         echo "_target: ${_target}"
         echo "_camel: ${_camel}"
@@ -80,6 +87,7 @@ WeeklyShifts
         echo "upper_case_one: ${upper_case_one}"
 
         _target="${_pwd}/dtos/${dto_name_file}"
+        _target_data="${_pwd}/dtos/${data_name_file}"
 if [ ! -e "${_target}" ] ; then
 {
         # _run_command
@@ -92,6 +100,18 @@ export class ${dto_name} {
   @ApiProperty()
   name: string
 }" > "${_target}"
+
+}
+fi
+if [ ! -e "${_target_data}" ] ; then
+{
+        touch "${_target_data}"
+echo "import { ${title_one}Dto } from './${_camel}.dto';
+export const ${capitalized_one}Dto: ${title_one}Dto =  {
+  id: '0',
+  name: 'Hamburg'
+}
+" > "${_target_data}"
 
 }
 fi
