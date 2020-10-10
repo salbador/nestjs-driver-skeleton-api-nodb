@@ -29,6 +29,7 @@ Driver
 GravimetricQuantity
 Location
 NullableLocation
+MaxLoadingWeightEnum
 Person
 PrintableDocument
 ProductQuantity
@@ -88,6 +89,25 @@ WeeklyShifts
 
         _target="${_pwd}/dtos/${dto_name_file}"
         _target_data="${_pwd}/dtos/${data_name_file}"
+
+if [[ "${_target}" == *"Enum"* ]] ; then 
+{
+
+if [ ! -e "${_target}" ] ; then
+{
+        touch "${_target}"
+echo "export enum ${title_one}EnumDto {
+  RDTU = \"Truck\",
+}
+" > "${_target}"
+
+}
+fi
+
+} 
+else 
+{
+
 if [ ! -e "${_target}" ] ; then
 {
         # _run_command
@@ -115,6 +135,10 @@ export const ${capitalized_one}Dto: ${title_one}Dto =  {
 
 }
 fi
+
+}
+fi
+
       }
       fi
     }
